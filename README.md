@@ -58,7 +58,7 @@ A proxy server that lets you use Anthropic clients with Gemini, OpenAI, or Anthr
    From repo root (uv uses `.venv` by default):
 
    ```bash
-   uv run uvicorn server:app --host 0.0.0.0 --port 8082 --reload
+   uv run uvicorn server:app --host 127.0.0.1 --port 8082 --reload
    ```
 
    *(`--reload` is optional, for development)*  
@@ -68,10 +68,10 @@ A proxy server that lets you use Anthropic clients with Gemini, OpenAI, or Anthr
 
    ```bash
    ./setup_env.sh
-   uv run uvicorn server:app --host 0.0.0.0 --port 8082 --reload
+   uv run uvicorn server:app --host 127.0.0.1 --port 8082 --reload
    ```
 
-   Or activate and run: `source .venv/bin/activate` then `uvicorn server:app --host 0.0.0.0 --port 8082`.
+   Or activate and run: `source .venv/bin/activate` then `uvicorn server:app --host 127.0.0.1 --port 8082`.
 
 #### Google Vertex AI setup
 
@@ -120,6 +120,10 @@ Or with a command:
 ```bash
 docker run -d --env-file .env -p 8082:8082 ghcr.io/1rgs/claude-code-proxy:latest
 ```
+
+#### Run as a service (Linux / macOS)
+
+To run the proxy as a system service (start on boot or at login, restart on failure), see **[SERVICE.md](SERVICE.md)** for systemd (Linux) and launchd (macOS) instructions.
 
 ### Using with Claude Code 🎮
 

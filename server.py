@@ -1653,11 +1653,17 @@ def log_request_beautifully(method, path, claude_model, openai_model, num_messag
     print(model_line)
     sys.stdout.flush()
 
+def main() -> None:
+    """Run the proxy server. Host/port from env HOST (default 127.0.0.1) and PORT (default 8082)."""
+    host = os.environ.get("HOST", "127.0.0.1")
+    port = int(os.environ.get("PORT", "8082"))
+    uvicorn.run(app, host=host, port=port, log_level="error")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "--help":
-        print("Run with: uvicorn server:app --reload --host 0.0.0.0 --port 8082")
+        print("Run with: uvicorn server:app --reload --host 127.0.0.1 --port 8082")
+        print("Or: claude-code-proxy  (after pip/uv install)")
         sys.exit(0)
-    
-    # Configure uvicorn to run with minimal logs
-    uvicorn.run(app, host="0.0.0.0", port=8082, log_level="error")
+    main()

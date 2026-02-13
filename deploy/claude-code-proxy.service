@@ -1,0 +1,29 @@
+[Unit]
+Description=Claude Code Proxy (Anthropic API proxy for Gemini/OpenAI)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Run the installed console script (use full path if not in PATH)
+ExecStart=/usr/bin/env claude-code-proxy
+# Or run from a venv: ExecStart=/opt/claude-code-proxy/.venv/bin/claude-code-proxy
+
+# Load .env from the app directory (change to your install path)
+WorkingDirectory=/opt/claude-code-proxy
+EnvironmentFile=/opt/claude-code-proxy/.env
+
+# Optional: override host/port
+# Environment=HOST=127.0.0.1
+# Environment=PORT=8082
+
+Restart=on-failure
+RestartSec=5
+
+# Log to journald
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=claude-code-proxy
+
+[Install]
+WantedBy=multi-user.target

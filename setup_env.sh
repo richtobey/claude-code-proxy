@@ -228,8 +228,8 @@ fi
 echo ""
 echo "=== Done ==="
 echo "  Activate:   source $VENV_DIR/bin/activate"
-echo "  Run proxy:  uv run uvicorn server:app --host 0.0.0.0 --port 8082"
-echo "              (or with env active: uvicorn server:app --host 0.0.0.0 --port 8082)"
+echo "  Run proxy:  uv run uvicorn server:app --host 127.0.0.1 --port 8082"
+echo "              (or with env active: uvicorn server:app --host 127.0.0.1 --port 8082)"
 echo "  .env:       cp .env.example .env  then edit .env"
 if ! command -v gcloud &>/dev/null; then
     echo "  (Install gcloud for Vertex: https://cloud.google.com/sdk/docs/install)"
