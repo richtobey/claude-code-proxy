@@ -42,3 +42,4 @@ ENV/
 *.swo
 
 .cursor/debug.log
+.hidden/
